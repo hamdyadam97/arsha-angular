@@ -1,0 +1,63 @@
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="position-relative d-inline text-primary ps-4" >خدماتنا</h1>
+            <h2 class="mt-2">
+              نقدم جميع خدمات التأهيل والتطوير والتقييم وقياس الأثر ومساعدة المؤسسات للحصول على المنح لجميع شهادات الأيزو الدولية بالتنسيق مع الجهات الدولية المعتمدة لمنح جميع شهادات الأيزو والجوائز الوطنية والعالمية</h2>
+        </div>
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+              <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                  <form method="post" role="form" class="php-email-form"  (ngSubmit)="add()">
+                   
+                    <div class="form-group">
+                      <label for="name">العنوان  </label>
+                      <input  class="form-control" name="titleName" type="text" placeholder="title Name" [(ngModel)]="model.titleName"  id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">الموضوع </label>
+                        <input  class="form-control" name="description" type="text" placeholder="description" [(ngModel)]="model.description" id="subject" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">الايقونة </label>
+                        <input  class="form-control" name="icon" type="text" placeholder="icon" [(ngModel)]="model.icon" id="subject" required>
+                      </div>
+                    <input type="submit" class="btn btn-success"><br>
+                    <div *ngIf="isAdded" class="text-success">Service Added Successfully</div>
+                    {{errorMessage}}
+                  </form>
+                </div>
+        
+              </div>
+        
+            </div>
+          </section>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow zoomIn" *ngFor="let item of list" data-aos="zoom-in" data-aos-delay="100" >
+                <div class="service-item d-flex flex-column justify-content-center text-center rounded" style="height: 500px;">
+                    <div class="service-icon flex-shrink-0">
+                        <i class="{{item.icon}}"></i>
+                    </div>
+                    <h5 class="mb-3"> {{item.titleName}}
+                    </h5>
+                    <p>{{item.description}} </p>
+                    <a class="btn px-3 mt-auto mx-auto" href="">اقرا اكثر</a>
+                    <a  (click)="showForm(item.id!)" class="btn  px-3 mt-auto mx-auto">{{item.id == updateModel.id?"Cancel":"update"}}</a>
+                    <a (click)="delService(item.id!)" class="btn btn-danger px-3 mt-auto mx-auto">delete</a>
+                    <div *ngIf="item.id == updateModel.id">
+                        <form (ngSubmit)="update(item.id!)">
+                            <input name="titleName" type="text" placeholder="title Name" [(ngModel)]="updateModel.titleName"><br>
+                            <input name="description" type="text" placeholder="description" [(ngModel)]="updateModel.description"><br>
+                            <input name="icon" type="text" placeholder="icon" [(ngModel)]="updateModel.icon"><br>
+                            <!-- <input type="hidden" name="id" [value]="item.id" [(ngModel)]="updateModel.id"> -->
+                            <input  type="submit" class="btn btn-secondary px-3 mt-auto mx-auto"><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  </div>
